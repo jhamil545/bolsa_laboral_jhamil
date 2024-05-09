@@ -20,7 +20,7 @@
         echo "<th>Teléfono</th>";
         echo "<th>Correo</th>";
         echo "<th>ID de Rol</th>";
-        echo "<th>ID de Usuario</th>";
+        echo "<th>Usuario</th>";
         echo "<th>Acciones</th>";
 
         while($fila = mysqli_fetch_array($registros)){
@@ -31,7 +31,14 @@
                 echo "<td>".$fila['telefono']."</td>";
                 echo "<td>".$fila['correo']."</td>";
                 echo "<td>".$fila['id_rol']."</td>";
-                echo "<td>".$fila['id_usuario']."</td>";
+                // Obtener el nombre del usuario
+        $idUsuario = $fila['id_usuario'];
+        $sqlUsuario = "SELECT nombres FROM usuarios WHERE id = $idUsuario";
+        $resultadoUsuario = mysqli_query($conexion, $sqlUsuario);
+        $filaUsuario = mysqli_fetch_assoc($resultadoUsuario);
+        $nombreUsuario = $filaUsuario['nombres'];
+
+        echo "<td>".$nombreUsuario."</td>";
 
                 // Botones para editar y eliminar una empresa
                 echo "<td>";

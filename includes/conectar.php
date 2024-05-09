@@ -9,10 +9,8 @@
             
             mysqli_query($link,"SET NAMES 'utf8'"); //para español
             mysqli_set_charset($link, "utf8"); //para español
-            date_default_timezone_set("America/Lima"); //para la zona horaria		            
-
+            date_default_timezone_set("America/Lima"); //para la zona horaria
             return $link;
         }
     }
-
 ?>

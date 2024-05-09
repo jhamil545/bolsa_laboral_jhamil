@@ -47,6 +47,18 @@ if ($resultado) {
     echo "Error al ejecutar la consulta: " . mysqli_error($conexion);
 }
 
+
+
+// Verificar si hay un mensaje almacenado en la sesión
+if(isset($_SESSION['mensaje'])) {
+    echo $_SESSION['mensaje'];
+    // Eliminar el mensaje de la sesión para que no se muestre en futuras visitas a la página
+    unset($_SESSION['mensaje']);
+} else {
+    echo "No hay mensajes para mostrar.";
+}
+
+
 // Cerrar la conexión
 mysqli_close($conexion);
 ?>

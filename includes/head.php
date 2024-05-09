@@ -1,7 +1,7 @@
 <?php
-    include("config.php");
-    session_start();
-?>    
+include("config.php");
+session_start();
+?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -25,10 +25,14 @@
 
     <link href="<?php echo RUTAGENERAL; ?>js/jquery-ui.structure.min.css" rel="stylesheet">
     <link href="<?php echo RUTAGENERAL; ?>js/jquery-ui.theme.min.css" rel="stylesheet">
-
-
-
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /* Estilos opcionales para ajustar el tamaño del icono */
+        .icono {
+            width: 40px; /* Ancho del icono */
+            height: 40px; /* Altura del icono */
+        }
+    </style>
 </head>
 
 <body id="page-top">
@@ -40,9 +44,9 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../index.php">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                <img src="https://w1.pngwing.com/pngs/256/814/png-transparent-job-line-employment-accounting-business-career-job-fair-job-hunting-salary.png" alt="Imagen de Icono" class="icono">
                 </div>
                 <div class="sidebar-brand-text mx-3">Bolsa Laboral</div>
             </a>
@@ -56,7 +60,7 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Inicio</span></a>
             </li>
-                
+
             <!-- Nav Item - Registrarse -->
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo RUTAGENERAL; ?>source/registro_usuarios.php">
@@ -64,63 +68,85 @@
                     <span>Registrar Usuario</span></a>
             </li>
 
-
-            <?php
-                if(isset($_SESSION["SESION_ROL"]) && $_SESSION["SESION_ROL"]=='1'){
-            ?>
-
+            <?php if(isset($_SESSION["SESION_ROL"]) && $_SESSION["SESION_ROL"]=='1'): ?>
                 <!-- Nav Item - Listar usuarios -->
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo RUTAGENERAL; ?>source/listar_usuarios.php">
                         <i class="fas fa-fw fa-chart-area"></i>
                         <span>Listar Usuarios</span></a>
                 </li>
-            <?php
-                }
-            ?>
+            <?php endif; ?>
 
-
-            <!-- Nav Item - Registrarse -->
+            <?php if(isset($_SESSION["SESION_ROL"]) && $_SESSION["SESION_ROL"]=='1'): ?>
+                <!-- Nav Item - Registrarse -->
             <li class="nav-item">
-                            <a class="nav-link" href="<?php echo RUTAGENERAL; ?>source/registro_empresa.php">
-                                <i class="fas fa-fw fa-chart-area"></i>
-                                <span>Registrar Empresa</span></a>
-                        </li>
+                <a class="nav-link" href="<?php echo RUTAGENERAL; ?>source/registro_empresa.php">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Registrar Empresa</span></a>
+            </li>
+            <?php endif; ?>
 
-            <?php
-                if(isset($_SESSION["SESION_ROL"]) && $_SESSION["SESION_ROL"]=='1'){
-            ?>
-             <!-- Nav Item - Listar usuarios -->
-             <li class="nav-item">
+            <?php if(isset($_SESSION["SESION_ROL"]) && $_SESSION["SESION_ROL"]=='1'): ?>
+                <!-- Nav Item - Listar usuarios -->
+                <li class="nav-item">
                     <a class="nav-link" href="<?php echo RUTAGENERAL; ?>source/listar_empresa.php">
                         <i class="fas fa-fw fa-chart-area"></i>
                         <span>Listar Empresa</span></a>
                 </li>
-            <?php
-                }
-            ?>
+            <?php endif; ?>
+
+            <?php if(isset($_SESSION["SESION_ROL"]) && $_SESSION["SESION_ROL"]!='3'): ?>
+            <!-- Nav Item - Registrarse of lab-->
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo RUTAGENERAL; ?>source/registro_o_laboral.php">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Registrar Oferta Laboral</span></a>
+            </li>
+            <?php endif; ?>
+
+            <?php if(isset($_SESSION["SESION_ROL"]) && $_SESSION["SESION_ROL"]=='1'): ?>
+                <!-- Nav Item - Listar of lab -->
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo RUTAGENERAL; ?>source/listar_oferta_laboral.php">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>Listar Oferta Laboral General</span></a>
+                </li>
+            <?php endif; ?>
+            <?php if(isset($_SESSION["SESION_ROL"]) && $_SESSION["SESION_ROL"]!='3'):?>
+                <!-- Nav Item - Listar of lab -->
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo RUTAGENERAL; ?>source/listar_ofer_empresa.php">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>Listar Oferta Laboral</span></a>
+                </li>
+            <?php endif; ?>
+
+            
+            <?php if(isset($_SESSION["SESION_ROL"]) && $_SESSION["SESION_ROL"]!='3'): ?>
+                <!-- Nav Item - Listar of lab -->
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo RUTAGENERAL; ?>source/listar_postulaciones.php">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>Listar Postulaciones</span></a>
+                </li>
+            <?php endif; ?>
+
+            
 
             <!-- Nav Item - iniciar / cerrar sesion -->
-            <?php
-                if(!isset($_SESSION["SESION_NOMBRES"])){
-            ?>
+            <?php if(!isset($_SESSION["SESION_NOMBRES"])): ?>
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo RUTAGENERAL; ?>source/form_login.php">
                         <i class="fas fa-fw fa-chart-area"></i>
                         <span>Iniciar Sesión</span></a>
                 </li>
-            <?php
-                }else{                    
-                    ?>
-                    <li class="nav-item">
+            <?php else: ?>
+                <li class="nav-item">
                     <a class="nav-link" href="<?php echo RUTAGENERAL; ?>source/logout.php">
                         <i class="fas fa-fw fa-chart-area"></i>
                         <span>Cerrar Sesión</span></a>
-                    </li>
-                    <?php
-                }
-            ?>
-
+                </li>
+            <?php endif; ?>
         </ul>
         <!-- Fin - Sidebar (Menú Izquierdo) -->
 
@@ -138,14 +164,12 @@
                     </button>
 
                     <?php
-                        //echo $_SESSION["SESION_NOMBRES"]."********************";                        
                         if(isset($_SESSION['SESION_NOMBRES']))                        
                             echo "Bienvenido ".$_SESSION['SESION_NOMBRES']." ".$_SESSION['SESION_APELLIDOS'];
                         else
                             echo "Inicie sesión.";
-                        
                     ?>
-                    
                 </nav>
-                <!-- End of Topbar -->
-                <!-- End HEAD.PHP -->
+            
+</body>
+</html>

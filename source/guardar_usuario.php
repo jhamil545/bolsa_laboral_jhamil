@@ -9,6 +9,7 @@
 	$nombres = $_POST['txt_nombres'];
 	$apellidos = $_POST['txt_apellidos'];
 	$telefono  = $_POST['txt_telefono'];
+	
 
 	/*
 	echo "DNI Recibido: ".$dni;
